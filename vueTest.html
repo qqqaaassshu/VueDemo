@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        #app {
+            width: 400px;
+            margin: 50px auto;
+            text-align: center
+        }
+        
+        .bag-progress {
+            height: 20px;
+            border: 1px solid black
+        }
+        
+        .progress {
+            height: 20px;
+            background: crimson
+        }
+        
+        button {
+            margin: 10px 0 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <img class="bag" :src="bagsrc">
+        <div class="bag-progress">
+            <div ref="progress" class="progress" :style="{width:hp +'%'}"></div>
+        </div>
+        <button @click="punch" v-show="show">punch</button>
+        <button @click="restart">Restart</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                hp: 100,
+                bagsrc: 'img/bag.png',
+                show: 'ture'
+            },
+            methods: {
+                punch: function() {
+                    this.hp -= 10
+                    if (this.hp <= 0) {
+                        this.show = false
+                        this.bagsrc = 'img/bag-burst.png';
+                    }
+
+
+                },
+                restart: function() {
+                    this.hp = 100
+                    this.show = true
+                    this.$refs.progress.style.width = '398px'
+                    this.bagsrc = 'img/bag.png';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

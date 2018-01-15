@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue1</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        .active {
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="app" :class="box">
+        <p>{{message}}</p>
+    </div> -->
+    <!-- <div id="app"> -->
+    <!-- <template v-if="message"> -->
+    <!-- <p v-show="message">235123123123123</p> -->
+    <!-- <p>123501294812039183</p>     -->
+    <!-- </template> -->
+    <!-- <button @click="shows">点击显示文字</button> -->
+    <!-- </div> -->
+    <!-- <ul id="app"> -->
+    <!-- <div id="app">
+        <div v-for="(list,index) in lists">
+            {{index}}:{{list.firstname}}
+        </div>
+    </div> -->
+
+
+    <!-- </ul> -->
+    <div id="example-1">
+        <ul>
+            <li v-for="item in items">
+                {{ item.message }}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="li in list">
+                {{li.message}}
+            </li>
+        </ul>
+        <button @click="addd()">添加</button>
+    </div>
+
+
+</body>
+<script>
+    // var app = new Vue({
+    //     el: "#app",
+    //     data: {
+    //         // message: false
+    //         // isActive: true,
+    //         // box: {
+    //         //     activeClass: isActive,
+    //         //     errorClass: true,
+    //         //     message: "样式文字放大咯"
+    //         // }
+    //         lists: [{
+    //             firstname: 'H',
+    //             lastname: 'cm',
+    //             age: '22'
+    //         }]
+    //     },
+    //     // methods: {
+    //     //     shows: function() {
+    //     //         this.message = this.message ? false : true
+    //     //     }
+    //     // }
+
+    // })
+    var example1 = new Vue({
+        el: '#example-1',
+        data: {
+            items: [{
+                message: '22'
+            }, {
+                message: '11'
+            }, {
+                message: '311'
+            }],
+            list: [{
+                message: '55'
+            }]
+        },
+        methods: {
+            addd: function() {
+                var list = this.list;
+                this.items.filter(function(value) {
+                    list.push({
+                        message: value.message % 11 == 0
+                    })
+                })
+            }
+        }
+    })
+</script>
+
+</html>

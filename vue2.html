@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <textarea v-model.number='message'></textarea>
+        <span>{{wat}}</span>
+        <br/>
+        <input type="checkbox" value="H" v-model='aaa'>
+        <input type="checkbox" value="C" v-model='aaa'>
+        <input type="checkbox" value="M" v-model='aaa'>
+        <span>{{watch}}</span>
+        <br/>
+        <input type="radio" value="HHHH" v-model="bbb">
+        <input type="radio" value="JJJJ" v-model="bbb">
+        <span>{{bbb}}</span>
+        <br/>
+        <select v-model="ccc">
+            <option  v-for="li in list" :value="li.text">{{li.id}}</option>
+        </select>
+        <span>{{ccc}}</span>
+        <br/>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '',
+                aaa: [],
+                bbb: "",
+                ccc: '123',
+                list: [{
+                    id: 1,
+                    text: '11111'
+                }, {
+                    id: 2,
+                    text: '222222'
+                }, {
+                    id: 3,
+                    text: '33333'
+                }]
+            },
+            computed: {
+                watch: function() {
+                    return this.aaa.join('')
+                },
+                wat: function() {
+                    return typeof this.message
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

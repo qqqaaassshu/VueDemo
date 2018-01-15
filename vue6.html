@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <button @click="aler"></button> -->
+        <input type="text" v-model="change" v-focus="change">
+    </div>
+    <script>
+        Vue.directive('focus', function(el, binding) {
+                console.log(binding.value)
+                el.style.backgroundColor = binding.value
+            })
+            // var obj = {
+            //     methods: {
+            //         aler: function() {
+            //             alert('hello')
+            //         }
+            //     }
+            // }
+        var app = new Vue({
+            el: "#app",
+            data: {
+                items: [{
+                    name: '1231'
+                }, {
+                    name: 'dfsgaw'
+                }]
+            },
+            render: function(createElement) {
+                if (this.items.length) {
+                    return createElement('ul', this.items.map(function(item) {
+                        return createElement('li', item.name)
+                    }))
+                } else {
+                    return createElement('p', 'No items found.')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

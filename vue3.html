@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.js</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <my-component></my-component> -->
+        <!-- <table>
+            <tr is="my-component"></tr>
+        </table> -->
+        <!-- <child myMessage="hello"></child> -->
+        <input type="text" v-model="message">
+        <br/>
+        <child my-message="safwe"></child>
+        <!-- <p>{{total}}</p>
+        <button-count v-on:buttonclick="addtotal"></button-count>
+        <button-count v-on:buttonclick="addtotal"></button-count> -->
+    </div>
+    <script>
+        // Vue.component('myComponent', {
+        //     template: '<div>A custom component!</div>'
+        // })
+        // Vue.component('button-count', {
+        //     template: '<button v-on:click="addCount">{{counter}}</button>',
+        //     data: function() {
+        //         return {
+        //             counter: 0
+        //         }
+        //     },
+        //     methods: {
+        //         addCount: function() {
+        //             ++this.counter;
+        //             this.$emit('buttonclick')
+        //         }
+        //     }
+        // })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello',
+                obj: {
+                    text: 'Hcm',
+                    do: ['wafeew']
+                },
+                do: ['qaswdeaw']
+                    // total: '0'
+            },
+            components: {
+                child: {
+                    template: "<p>{{String}}</p>",
+                    props: [String]
+
+                }
+            }
+            // components: {
+            //     // 'my-component': {
+            //     //     template: '<div>A custom component!</div>'
+            //     // }
+            //     child: {
+            //         props: ['myMessage'],
+            //         template: '<span>{{myMessage}}</span>'
+            //     }
+            // },
+            // methods: {
+            //     addtotal: function() {
+            //         ++this.total
+            //     }
+            // }
+        })
+    </script>
+</body>
+
+</html>
