@@ -7,34 +7,34 @@ Mock.mock(/getNewsList/, {
     }]
 })
 
-function getRImg() {
-    return Mock.Random.image('700x300', Mock.Random.hex())
-}
-Mock.mock(/getSlides/, [{
-        src: getRImg(),
-        title: '@ctitle(4, 12)',
-        ky: 1,
-        toKey: 'analysis'
-    },
-    {
-        src: getRImg(),
-        title: '@ctitle(4, 12)',
-        ky: 2,
-        toKey: 'count'
-    },
-    {
-        src: getRImg(),
-        title: '@ctitle(4, 12)',
-        ky: 3,
-        toKey: 'publish'
-    },
-    {
-        src: getRImg(),
-        title: '@ctitle(4, 12)',
-        ky: 4,
-        toKey: 'forecast'
-    }
-])
+// function getRImg() {
+//     return Mock.Random.image('700x300', Mock.Random.hex())
+// }
+// Mock.mock(/getSlides/, [{
+//         src: getRImg(),
+//         title: '@ctitle(4, 12)',
+//         ky: 1,
+//         toKey: 'analysis'
+//     },
+//     {
+//         src: getRImg(),
+//         title: '@ctitle(4, 12)',
+//         ky: 2,
+//         toKey: 'count'
+//     },
+//     {
+//         src: getRImg(),
+//         title: '@ctitle(4, 12)',
+//         ky: 3,
+//         toKey: 'publish'
+//     },
+//     {
+//         src: getRImg(),
+//         title: '@ctitle(4, 12)',
+//         ky: 4,
+//         toKey: 'forecast'
+//     }
+// ])
 
 Mock.mock(/getPrice/, {
     'number|1-100': 100
@@ -133,4 +133,9 @@ Mock.mock(/getTableData/, {
         "date": "@date()",
         "amount": "@integer(100, 500)元"
     }]
+})
+
+Mock.mock(/login/, {
+    "username": "huchunming",
+    "userId": 123123
 })

@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="index-right">
-      <!-- <slide-show :slides="slides" :inv="invTime"></slide-show> -->
+      <slide-show :slides="slides" :inv="invTime"></slide-show>
       <div class="index-board-list">
         <div class="index-board-item" v-for="(item,index) in boardList" :class="[{'line-last':index % 2},'index-board-'+item.id]">
           <div class="index-board-item-inner">
@@ -39,40 +39,58 @@
   </div>
 </template>
 <script>
+import slideShow from '../components/slideShow'
 import axios from 'axios'
 export default{
     mounted(){
       axios.get('api/getNewsList').then((res)=>{
-        console.log(res)
         this.newsList= res.data.list
       }).catch((error)=>{
         console.log(error)
       })
       axios.get('api/getBoardList').then((res) => {
-        console.log(res)
         this.boardList = res.data
       }).catch((error) => {
         console.log(error)
       })
       axios.get('api/getProductList').then((res) => {
-        console.log(res)
         this.productList = res.data
-      }).catch((error) => {
-        console.log(error)
-      })
-      axios.get('api/getSlides').then((res) => {
-        console.log(res)
-        this.slides = res.data
       }).catch((error) => {
         console.log(error)
       })
     },
     data(){
         return {
+          invTime: 2000,
+          slides: [
+            {
+              src: require('../assets/slideShow/pic1.jpg'),
+              title: 'xxx1',
+              href: 'detail/analysis'
+            },
+            {
+              src: require('../assets/slideShow/pic2.jpg'),
+              title: 'xxx2',
+              href: 'detail/count'
+            },
+            {
+              src: require('../assets/slideShow/pic3.jpg'),
+              title: 'xxx3',
+              href: 'http://xxx.xxx.com'
+            },
+            {
+              src: require('../assets/slideShow/pic4.jpg'),
+              title: 'xxx4',
+              href: 'detail/forecast'
+            }
+          ],
             boardList:[],
             newsList:[],
-            productList:{}
+            productList:{},
           }
+    },
+    components:{
+      slideShow
     }
 }
 </script>
