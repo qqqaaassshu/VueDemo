@@ -25,12 +25,12 @@
     <div class="index-right">
       <slide-show :slides="slides" :inv="invTime"></slide-show>
       <div class="index-board-list">
-        <div class="index-board-item" v-for="(item,index) in boardList" :class="[{'line-last':index % 2},'index-board-'+item.id]">
+        <div class="index-board-item" v-for="(item,index) in slides" :class="[{'line-last':index % 2},'index-board-'+item.id]">
           <div class="index-board-item-inner">
             <h2>{{item.title}}</h2>
             <p>{{item.description}}</p>
             <div class="index-board-button">
-              <a href="" class="button">立即购买</a>
+              <router-link class="button" :to="{path:item.href}">立即购买</router-link>
             </div>
           </div>
         </div>
@@ -48,11 +48,11 @@ export default{
       }).catch((error)=>{
         console.log(error)
       })
-      axios.get('api/getBoardList').then((res) => {
-        this.boardList = res.data
-      }).catch((error) => {
-        console.log(error)
-      })
+      // axios.get('api/getBoardList').then((res) => {
+      //   this.boardList = res.data
+      // }).catch((error) => {
+      //   console.log(error)
+      // })
       axios.get('api/getProductList').then((res) => {
         this.productList = res.data
       }).catch((error) => {
@@ -65,22 +65,30 @@ export default{
           slides: [
             {
               src: require('../assets/slideShow/pic1.jpg'),
-              title: 'xxx1',
+              description: '开放产品是一款开放产品',
+              title: '开放产品',
+              id:'car',
               href: 'detail/analysis'
             },
             {
               src: require('../assets/slideShow/pic2.jpg'),
-              title: 'xxx2',
+              description: '品牌营销帮助你的产品更好地找到定位',
+              title: '品牌营销',
+              id:'earth',
               href: 'detail/count'
             },
             {
               src: require('../assets/slideShow/pic3.jpg'),
-              title: 'xxx3',
-              href: 'http://xxx.xxx.com'
+              description: '使命必达快速迭代永远保持最前端的速度',
+              title: '勇攀高峰',
+              id:'loud',
+              href: 'detail/publish'
             },
             {
               src: require('../assets/slideShow/pic4.jpg'),
-              title: 'xxx4',
+              description: '帮你勇闯高峰，到达事业的顶峰',
+              title: '使命必达',
+              id:'hill',
               href: 'detail/forecast'
             }
           ],

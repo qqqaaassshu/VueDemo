@@ -105,6 +105,7 @@
   opacity: .5;
   bottom: 0;
   height: 30px;
+  line-height:30px;
   text-align: left;
   padding-left: 15px;
 }

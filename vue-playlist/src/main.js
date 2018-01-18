@@ -6,13 +6,37 @@ import Layout from './components/Layout'
 import Vuex from 'vuex'
 import IndexPage from './pages/Index'
 import mock from './mock/mock'
+import detail from './pages/Detail'
+import Detailforecast from './pages/detail/forecast'
+import Detailanalysis from './pages/detail/analysis'
+import Detailcount from './pages/detail/count'
+import Detailpublish from './pages/detail/publish'
 Vue.use(VueRouter)
 let router = new VueRouter({
     mode: 'history',
     routes: [{
-        path: '/',
-        component: IndexPage
-    }]
+            path: '/',
+            component: IndexPage
+        },
+        {
+            path: '/detail',
+            component: detail,
+            redirect: '/detail/analysis',
+            children: [{
+                path: 'forecast',
+                component: Detailforecast
+            }, {
+                path: 'analysis',
+                component: Detailanalysis
+            }, {
+                path: 'count',
+                component: Detailcount
+            }, {
+                path: 'publish',
+                component: Detailpublish
+            }]
+        }
+    ]
 })
 Vue.config.productionTip = false
 new Vue({

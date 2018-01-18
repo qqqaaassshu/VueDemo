@@ -45,28 +45,28 @@ Mock.mock(/getBoardList/, [{
         title: '@ctitle(4)',
         description: '@ctitle(8, 12)',
         id: 'car',
-        toKey: 'analysis',
+        toKey: 'detail/analysis',
         saleout: '@boolean'
     },
     {
         title: '@ctitle(4)',
         description: '@ctitle(8, 12)',
         id: 'earth',
-        toKey: 'count',
+        toKey: 'detail/count',
         saleout: '@boolean'
     },
     {
         title: '@ctitle(4)',
         description: '@ctitle(8, 12)',
         id: 'loud',
-        toKey: 'forecast',
+        toKey: 'detail/forecast',
         saleout: '@boolean'
     },
     {
         title: '@ctitle(4)',
         description: '@ctitle(8, 12)',
         id: 'hill',
-        toKey: 'publish',
+        toKey: 'detail/publish',
         saleout: '@boolean'
     }
 ])
