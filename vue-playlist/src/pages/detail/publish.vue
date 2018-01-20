@@ -10,7 +10,7 @@
                   购买数量：
               </div>
               <div class="sales-board-line-right">
-                  <v-counter :max="100" :min="20"></v-counter>
+                  <v-counter :counterConfig="counterConfig"></v-counter>
               </div>
           </div>
           <div class="sales-board-line">
@@ -18,7 +18,7 @@
                   行业：
               </div>
               <div class="sales-board-line-right">
-                  <v-selection :selections="tradeList"></v-selection>
+                  <v-selection :selectData="tradeList"></v-selection>
               </div>
           </div>
           <div class="sales-board-line">
@@ -26,7 +26,7 @@
                   产品版本：
               </div>
               <div class="sales-board-line-right">
-                  <v-mul-chooser :selections="versionList"></v-mul-chooser>
+                  <v-choose chooseType="check" :chooseData="versionList"></v-choose>
               </div>
           </div>
           <div class="sales-board-line">
@@ -251,10 +251,65 @@
   </div>
 </template>
 
-<script> 
+<script>
+import vChoose from "../../components/choose";
+import vSelection from "../../components/selection";
+import vCounter from "../../components/counter";
 export default {
-
-}
+  data() {
+    return {
+      counterConfig: {
+        min: 20,
+        max: 100
+      },
+      tradeList: [
+        {
+          options: "出版业",
+          value: 0
+        },
+        {
+          options: "媒体",
+          value: 1
+        },
+        {
+          options: "金融",
+          value: 2
+        },
+        {
+          options: "互联网",
+          value: 3
+        },
+        {
+          options: "游戏",
+          value: 4
+        }
+      ],
+      versionList: [
+        {
+          options: "初级版",
+          value: 0
+        },
+        {
+          options: "中级版",
+          value: 1
+        },
+        {
+          options: "高级版",
+          value: 2
+        },
+        {
+          options: "专家版",
+          value: 3
+        }
+      ]
+    };
+  },
+  components: {
+    vChoose,
+    vSelection,
+    vCounter
+  }
+};
 </script>
 
 <style>

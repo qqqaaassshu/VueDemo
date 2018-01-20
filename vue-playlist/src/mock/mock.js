@@ -139,3 +139,7 @@ Mock.mock(/login/, {
     "username": "huchunming",
     "userId": 123123
 })
+
+Mock.mock(/getPrice/, 'post', (req) => {
+    alert('123')
+})

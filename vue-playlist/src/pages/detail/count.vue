@@ -10,7 +10,7 @@
                   产品类型：
               </div>
               <div class="sales-board-line-right">
-                  <v-chooser :selections="buyTypes"></v-chooser>
+                  <v-choose chooseType="radio" :chooseData="buyTypes"></v-choose>
               </div>
           </div>
           <div class="sales-board-line">
@@ -18,7 +18,7 @@
                   适用地区：
               </div>
               <div class="sales-board-line-right">
-                  <v-selection :selections="districts"></v-selection>
+                  <v-selection :selectData="districts"></v-selection>
               </div>
           </div>
           <div class="sales-board-line">
@@ -244,9 +244,59 @@
 </template>
 
 <script>
+import vSelection from "../../components/selection";
+import  vChoose from '../../components/choose'
+// import vCounter from '../../components/counter'
 export default {
-
-}
+  data() {
+    return {
+      buyTypes: [
+        {
+          options: "红色版",
+          value: 0
+        },
+        {
+          options: "绿色版",
+          value: 1
+        },
+        {
+          options: "紫色版",
+          value: 2
+        }
+      ],
+      districts: [
+        {
+          options: "北京",
+          value: 0
+        },
+        {
+          options: "上海",
+          value: 1
+        },
+        {
+          options: "广州",
+          value: 2
+        },
+        {
+          options: "天津",
+          value: 3
+        },
+        {
+          options: "武汉",
+          value: 4
+        },
+        {
+          options: "重庆",
+          value: 5
+        }
+      ]
+    };
+  },
+  components: {
+    vSelection,
+    vChoose
+  }
+};
 </script>
 
 <style>

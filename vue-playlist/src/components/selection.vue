@@ -1,10 +1,10 @@
 <template>
   <div>
       <div class="select" @click="listShow">
-          <span>{{data[index].options}}</span>
+          <span>{{selectData[nowIndex].options}}</span>
           <i :class="[isShow?'bottom':'top']"></i>
           <ul class="list" v-show="isShow">
-          <li v-for="(item,index) in data" @click="options(index)">{{item.options}}</li>
+          <li v-for="(item,index) in selectData" @click="options(index)">{{item.options}}</li>
       </ul>
       </div>
   </div>
@@ -13,7 +13,7 @@
 <script>
 export default {
     props:{
-        data:{
+        selectData:{
             type:Array,
             defalut:[]
         }
@@ -21,7 +21,7 @@ export default {
     data(){
         return {
             isShow:false,
-            index:0
+            nowIndex:0
         }
     },
     methods:{
@@ -30,7 +30,7 @@ export default {
         },
         options(index){
             this.index = index
-            this.$emit('onchange',index)
+            this.$emit('onChange',this.selectData[index])
         }
     }
 }
@@ -40,7 +40,7 @@ export default {
 .select{
     display:inline-block;
     position: relative;
-    height:15px;
+    height:14px;
     padding:5px 25px 5px 10px;
     border:1px solid #eee;
     border-radius:3px;
@@ -69,6 +69,7 @@ export default {
     top:24px;
     left:-1px;
     width:100%;
+    background:white;
     border:1px solid #eee;
     border-top-color:transparent
 }

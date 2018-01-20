@@ -10,7 +10,7 @@
                   购买数量：
               </div>
               <div class="sales-board-line-right">
-                <!-- <v-counter @on-change="onParamChange('buyNum', $event)"></v-counter> -->
+                <v-counter :counterConfig='counterConfig' @onChange="onParamChange('buyNum',$event)"></v-counter>
               </div>
           </div>
           <div class="sales-board-line">
@@ -18,7 +18,7 @@
                   产品类型：
               </div>
               <div class="sales-board-line-right">
-                  <v-selection :data="selectData" @onchange="selectChange"></v-selection>
+                  <v-selection :selectData="buyTypes" @onChange="onParamChange('buyType',$event)"></v-selection>
               </div>
           </div>
           <div class="sales-board-line">
@@ -26,9 +26,7 @@
                   有效时间：
               </div>
               <div class="sales-board-line-right">
-                  <!-- <v-chooser
-                  :selections="periodList"
-                  @on-change="onParamChange('period', $event)"></v-chooser> -->
+                  <v-choose :chooseData="periodList" chooseType="radio" @onChange="onParamChange('period',$event)"></v-choose>
               </div>
           </div>
           <div class="sales-board-line">
@@ -36,9 +34,7 @@
                   产品版本：
               </div>
               <div class="sales-board-line-right">
-                  <!-- <v-mul-chooser
-                  :selections="versionList"
-                  @on-change="onParamChange('versions', $event)"></v-mul-chooser> -->
+                  <v-choose :chooseData="versionList" chooseType="check" @onChange="onParamChange('versions',$event)"></v-choose>
               </div>
           </div>
           <div class="sales-board-line">
@@ -46,7 +42,7 @@
                   总价：
               </div>
               <div class="sales-board-line-right">
-                  <!-- {{ price }} 元 -->
+                  {{ price }} 元
               </div>
           </div>
           <div class="sales-board-line">
@@ -113,35 +109,105 @@
 </template>
 
 <script>
-import vSelection from '../../components/selection'
+import vSelection from "../../components/selection";
+import vChoose from "../../components/choose";
+import vCounter from "../../components/counter";
+import axios from "axios";
 export default {
-    data(){
-        return{
-            selectData:[
-                {
-                    options:'入门版',
-                    value:1
-                },
-                {
-                    options:'中级版',
-                    value:2
-                },
-                {
-                    options:'高级版',
-                    value:3
-                }
-            ]
+  data() {
+    return {
+      buyNum: 0,
+      buyType: {},
+      versions: {},
+      period: {},
+      price: 0,
+      versionList: [
+        {
+          options: "客户版",
+          value: 0
+        },
+        {
+          options: "代理商版",
+          value: 1
+        },
+        {
+          options: "专家版",
+          value: 2
         }
-    },
-    components:{
-        vSelection
-    },
-    methods:{
-        selectChange(index){
-            console.log(index)
+      ],
+      periodList: [
+        {
+          options: "半年",
+          value: 0
+        },
+        {
+          options: "一年",
+          value: 1
+        },
+        {
+          options: "两年",
+          value: 2
         }
+      ],
+      buyTypes: [
+        {
+          options: "入门版",
+          value: 0
+        },
+        {
+          options: "中级版",
+          value: 1
+        },
+        {
+          options: "高级版",
+          value: 2
+        }
+      ],
+      counterConfig: {
+        max: 1000,
+        min: 10
+      }
+    };
+  },
+  components: {
+    vSelection,
+    vChoose,
+    vCounter
+  },
+  methods: {
+    onParamChange(attr, val) {
+      this[attr] = val;
+      this.getPrice();
+    },
+    getPrice() {
+      let buyVersionsArray = this.versions.map((item, index) => {
+        return this.versions[index].value;
+      });
+      let reqParams = {
+        buyNumber: this.buyNum,
+        buyType: this.buyType.value,
+        period: this.period.value,
+        version: buyVersionsArray.join(",")
+      };
+      axios.post("/api/getPrice", reqParams)
+        .then(res => {
+            // let data = JSON.parse(res.data)
+        //   this.price  = res.data.amount
+        console.log(res)
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
-}
+  },
+  mounted(){
+      this.buyNum=0
+      this.buyType =this.buyTypes[0]
+      this.versions = [this.versionList[0]]
+      this.period = this.periodList[0]
+      this.getPrice()
+  }
+};
 </script>
 
 <style>

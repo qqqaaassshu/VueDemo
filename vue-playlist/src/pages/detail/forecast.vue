@@ -10,7 +10,7 @@
                   购买数量：
               </div>
               <div class="sales-board-line-right">
-                  <v-counter :max="100" :min="20"></v-counter>
+                  <v-counter :counterConfig="counterConfig"></v-counter>
               </div>
           </div>
           <div class="sales-board-line">
@@ -18,7 +18,7 @@
                   媒介：
               </div>
               <div class="sales-board-line-right">
-                  <v-mul-chooser :selections="versionList"></v-mul-chooser>
+                  <v-choose chooseType="check" :chooseData="versionList" @onChange="versionChange"></v-choose>
               </div>
           </div>
           <div class="sales-board-line">
@@ -58,9 +58,46 @@
 </template>
 
 <script>
+// import vSelection from '../../components/selection'
+import vChoose from "../../components/choose";
+import vCounter from "../../components/counter";
 export default {
-
-}
+  data() {
+    return {
+      versionList: [
+        {
+          options: "纸质报告",
+          value: 0
+        },
+        {
+          options: "pdf",
+          value: 1
+        },
+        {
+          options: "页面报告",
+          value: 2
+        },
+        {
+          options: "邮件",
+          value: 3
+        }
+      ],
+      counterConfig: {
+        max: 100,
+        min: 20
+      }
+    };
+  },
+  components: {
+    vChoose,
+    vCounter
+  },
+  methods:{
+    versionChange(obj){
+      console.log(obj)
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -76,7 +113,7 @@ export default {
   margin-bottom: 20px;
 }
 .buy-dialog-table td,
-.buy-dialog-table th{
+.buy-dialog-table th {
   border: 1px solid #e3e3e3;
   text-align: center;
   padding: 5px 0;
